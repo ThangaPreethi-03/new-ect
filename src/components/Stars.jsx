@@ -1,24 +1,23 @@
-import Particles from "react-tsparticles";
-import { loadFull } from "tsparticles";
+import { useEffect } from "react";
 
 export default function Stars() {
-  const init = async (main) => {
-    await loadFull(main);
-  };
+  useEffect(() => {
+    const starsContainer = document.getElementById("stars-bg");
+    if (!starsContainer) return;
 
-  return (
-    <Particles
-      init={init}
-      options={{
-        fullScreen: { enable: true },
-        particles: {
-          number: { value: 90 },
-          color: { value: "#ffffff" },
-          opacity: { value: 0.35 },
-          size: { value: 1.5 },
-          move: { enable: true, speed: 0.3 },
-        },
-      }}
-    />
-  );
+    starsContainer.innerHTML = "";
+
+    const starCount = 80;
+
+    for (let i = 0; i < starCount; i++) {
+      const star = document.createElement("span");
+      star.className = "star";
+      star.style.left = Math.random() * 100 + "%";
+      star.style.top = Math.random() * 100 + "%";
+      star.style.animationDelay = Math.random() * 3 + "s";
+      starsContainer.appendChild(star);
+    }
+  }, []);
+
+  return <div id="stars-bg" />;
 }

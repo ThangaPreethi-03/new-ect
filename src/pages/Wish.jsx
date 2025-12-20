@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import Gift from "../components/GiftBox";
 import FireworkIcon from "../components/FireworkIcon";
 import Countdown from "../components/Countdown";
-import Fireworks from "../components/Fireworks";
 
 export default function Wish() {
   const name = localStorage.getItem("name");
@@ -14,47 +13,42 @@ export default function Wish() {
   }
 
   return (
-    <>
-      {/* Fireworks exactly when Wish page appears */}
-      <Fireworks show={true} />
-
+    <div className="wish-wrapper">
       <motion.div
-        style={hero}
+        className="wish-card"
         initial="hidden"
         animate="visible"
         variants={{
           hidden: {},
-          visible: {
-            transition: { staggerChildren: 0.35 },
-          },
+          visible: { transition: { staggerChildren: 0.3 } },
         }}
       >
         {/* TITLE */}
         <motion.div
-          style={titleRow}
+          className="wish-title"
           variants={item}
         >
           <FireworkIcon delay={0} />
           <h1 className="neonTitle">Happy New Year 2025</h1>
-          <FireworkIcon delay={0.8} />
+          <FireworkIcon delay={0.6} />
         </motion.div>
 
         {/* NAME */}
-        <motion.h2 variants={item}>
+        <motion.h2 className="wish-name" variants={item}>
           {name} 💖
         </motion.h2>
 
         {/* TEXT */}
-        <motion.p variants={item}>
-          Tap the gift to unlock your surprise 🎁
+        <motion.p className="wish-text" variants={item}>
+          A small surprise is waiting just for you 🎁
         </motion.p>
 
         {/* GIFT */}
-        <motion.div variants={item}>
+        <motion.div className="wish-gift" variants={item}>
           <Gift />
         </motion.div>
       </motion.div>
-    </>
+    </div>
   );
 }
 
@@ -65,23 +59,4 @@ const item = {
     y: 0,
     transition: { duration: 0.7, ease: "easeOut" },
   },
-};
-
-const hero = {
-  minHeight: "100vh",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "center",
-  gap: "22px",
-  textAlign: "center",
-  padding: "20px",
-};
-
-const titleRow = {
-  display: "flex",
-  alignItems: "center",
-  gap: "14px",
-  flexWrap: "wrap",
-  justifyContent: "center",
 };
