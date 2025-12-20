@@ -1,51 +1,53 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function GiftBox() {
-  const [opened, setOpened] = useState(false);
+  const [open, setOpen] = useState(false);
 
   return (
-    <div className="gift-container">
-      {!opened ? (
+    <div className="charm-gift-wrap">
+      {!open && (
         <motion.div
-          className="gift-box"
-          onClick={() => setOpened(true)}
-          whileTap={{ scale: 0.95 }}
-          animate={{ y: [0, -12, 0] }}
+          className="charm-gift"
+          onClick={() => setOpen(true)}
+          initial={{ scale: 1 }}
+          animate={{ scale: [1, 1.05, 1] }}
           transition={{ repeat: Infinity, duration: 2 }}
+          whileTap={{ scale: 0.92 }}
         >
-          {/* LID */}
           <motion.div
-            className="gift-lid"
-            animate={{ rotate: opened ? -35 : 0, y: opened ? -40 : 0 }}
-            transition={{ duration: 0.6 }}
+            className="charm-lid"
+            initial={false}
+            animate={{ y: open ? -40 : 0, rotate: open ? -25 : 0 }}
+            transition={{ type: "spring", stiffness: 260, damping: 18 }}
           />
 
-          {/* BOX */}
-          <div className="gift-body">
-            <div className="ribbon-vertical" />
-            <div className="ribbon-horizontal" />
+          <div className="charm-box">
+            <span className="ribbon-v" />
+            <span className="ribbon-h" />
           </div>
 
-          <span className="tap-text">Tap to open 🎁</span>
-        </motion.div>
-      ) : (
-        <motion.div
-          className="gift-open"
-          initial={{ scale: 0.6, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-        >
-          <div className="sparkles">
-            {Array.from({ length: 14 }).map((_, i) => (
-              <span key={i}>✨</span>
-            ))}
-          </div>
-
-          <p className="gift-message">
-            This surprise was made with love 💖
-          </p>
+          <p className="tap-hint">Tap gently 🎁</p>
         </motion.div>
       )}
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            className="charm-reveal"
+            initial={{ opacity: 0, scale: 0.6 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ type: "spring", stiffness: 200 }}
+          >
+            <div className="float-emojis">
+              💖 ✨ 🎉 💕 ✨
+            </div>
+            <p className="charm-text">
+              This little moment was crafted just for you 💝
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
