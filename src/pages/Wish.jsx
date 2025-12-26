@@ -29,7 +29,7 @@ export default function Wish() {
           variants={item}
         >
           <FireworkIcon delay={0} />
-          <h1 className="neonTitle">Happy New Year 2025</h1>
+          <h1 className="neonTitle">Happy New Year 2026</h1>
           <FireworkIcon delay={0.6} />
         </motion.div>
 

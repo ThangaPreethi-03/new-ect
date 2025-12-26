@@ -1,7 +1,6 @@
 import Confetti from "react-confetti";
 import { useEffect, useState } from "react";
 import Message from "../components/MessageCard";
-import Gallery from "../components/ImageGallery";
 import BackgroundMusic from "../components/BackgroundMusic";
 
 
@@ -19,7 +18,6 @@ export default function Surprise() {
 
       {confetti && <Confetti gravity={0.18} />}
       <Message />
-      <Gallery />
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import music from "../assets/music.mp3";
+import music from "../assets/sunrise-theme.mp3";
 
 export default function BackgroundMusic() {
   const audioRef = useRef(null);
