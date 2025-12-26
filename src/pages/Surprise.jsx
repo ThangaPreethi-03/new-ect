@@ -19,7 +19,6 @@ export default function Surprise() {
 
       {confetti && <Confetti gravity={0.18} />}
       <Message />
-      <Gallery />
     </div>
   );
 }
